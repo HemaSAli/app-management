@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import { TrashIcon } from 'lucide-react';
 import Button from '../ui/Button/button';
 import Card from '../ui/Card';
-import { useDeleteAppointment } from './hooks';
+import { useDeleteAppointment, usePatientDetails } from './hooks';
 import type { Appointment as AppointmentType } from './types';
 
 const DetailsItem = ({ label, value }: { label: string; value: string }) => {
@@ -14,9 +14,11 @@ const DetailsItem = ({ label, value }: { label: string; value: string }) => {
   );
 };
 
-type Props = { appointment: AppointmentType; mutatePatient: () => void };
-const Appointment = ({ appointment, mutatePatient }: Props) => {
+type Props = { appointment: AppointmentType };
+const Appointment = ({ appointment }: Props) => {
+  const { mutate } = usePatientDetails();
   const deleteAppointment = useDeleteAppointment();
+
   return (
     <Card className="relative">
       <Button
@@ -25,7 +27,7 @@ const Appointment = ({ appointment, mutatePatient }: Props) => {
         size="icon"
         onClick={() => {
           deleteAppointment(appointment.id);
-          mutatePatient();
+          mutate();
         }}
       >
         <TrashIcon className="w-4 h-4" />

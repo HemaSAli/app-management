@@ -10,7 +10,7 @@ import { usePatientDetails } from './hooks';
 import PatientDetailsProvider from './PatientDetailsProvider';
 
 const PatientDetailsContent = () => {
-  const { patientDetails, isLoading, mutate } = usePatientDetails();
+  const { patientDetails, isLoading } = usePatientDetails();
   if (isLoading) {
     return <Skeleton className="h-20 w-full" />;
   }
@@ -35,7 +35,7 @@ const PatientDetailsContent = () => {
       {!!patientDetails.appointments.length && (
         <div className="flex flex-col gap-4 my-6">
           {patientDetails.appointments.map((appointment) => (
-            <Appointment key={appointment.id} appointment={appointment} mutatePatient={mutate} />
+            <Appointment key={appointment.id} appointment={appointment} />
           ))}
         </div>
       )}
