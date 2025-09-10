@@ -2,14 +2,15 @@ import { type ComponentProps } from 'react';
 import SelectInput from '../ui/SelectInput';
 import WithForm from './WithForm';
 
-const FormInput = ({ name, ...props }: Omit<ComponentProps<typeof SelectInput>, 'error' | 'onBlur' | 'onChange'>) => {
+type Props = Omit<ComponentProps<typeof SelectInput>, 'error' | 'onBlur' | 'onChange'>;
+const FormInput = ({ name, ...props }: Props) => {
   return (
     <WithForm>
       {({ register, formState: { errors }, setValue, watch }) => (
         <SelectInput
           error={errors[name]?.message as string}
-          {...props}
           name={name}
+          {...props}
           onChange={(value: string) => setValue(name, value)}
           onBlur={() =>
             register(name).onBlur({

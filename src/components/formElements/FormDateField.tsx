@@ -2,7 +2,7 @@ import DateField from '@/components/ui/DateInput';
 import type { ComponentProps } from 'react';
 import WithForm from './WithForm';
 
-type Props = Pick<ComponentProps<typeof DateField>, 'name' | 'label'>;
+type Props = Omit<ComponentProps<typeof DateField>, 'error' | 'onChange' | 'onBlur'>;
 
 const FormDateField = ({ name, ...props }: Props) => {
   return (

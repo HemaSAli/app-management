@@ -4,6 +4,7 @@ import type { ComponentProps } from 'react';
 type Props = ComponentProps<'input'> & {
   label: string;
   error?: string;
+  name: string;
 };
 const Input = ({
   className,

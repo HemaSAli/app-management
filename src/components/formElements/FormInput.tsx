@@ -2,16 +2,13 @@ import { type ComponentProps } from 'react';
 import Input from '../ui/Input';
 import WithForm from './WithForm';
 
-const FormInput = ({
-  name,
-  ...props
-}: Omit<ComponentProps<typeof Input>, 'error' | 'onBlur' | 'onChange'> & {
-  name: string;
-}) => {
+type Props = Omit<ComponentProps<typeof Input>, 'error' | 'onBlur' | 'onChange'>;
+
+const FormInput = ({ name, ...props }: Props) => {
   return (
     <WithForm>
       {({ register, formState: { errors } }) => (
-        <Input error={errors[name]?.message as string} {...props} {...register(name)} />
+        <Input error={errors[name]?.message as string} {...register(name)} {...props} />
       )}
     </WithForm>
   );
