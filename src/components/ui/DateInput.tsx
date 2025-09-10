@@ -56,7 +56,7 @@ const DateInput = ({
             <div className="flex items-center gap-2 relative">
               <Button
                 className={cn(
-                  'transition-all px-2 duration-300 rounded-md border border-border-regular bg-card-bg-main h-full w-full justify-start hover:bg-card-bg-main',
+                  'transition-all px-2 duration-300 rounded-md border border-border-regular bg-card-bg-main h-full w-full justify-start hover:bg-card-bg-main',
                   error && 'border-red-700 text-red-700'
                 )}
                 id="date-picker"

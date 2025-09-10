@@ -6,6 +6,7 @@ const app = express();
 app.use(express.json());
 app.use('/api', router);
 
+// Move port to .env
 app.listen(3001, () => {
   console.log(`Server is running on port 3001`);
 });
