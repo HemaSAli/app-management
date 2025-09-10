@@ -20,6 +20,8 @@ const Router = () => {
             path={links.patientDetails(':id')}
             element={
               // This is just an example of how can we handle rendering errors.
+              // Could be reported to Sentry or any other error tracking tool.
+              // Note that we might need to upload sourcemaps to Sentry.
               <ErrorBoundary fallback={<div>Something went wrong!</div>}>
                 <PatientDetails />
               </ErrorBoundary>
