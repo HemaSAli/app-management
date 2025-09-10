@@ -1,5 +1,6 @@
 import links from '@/links';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
 import { z } from 'zod';
@@ -40,7 +41,7 @@ const AddPatientAppointment = () => {
   const addPatientAppointment = useAddPatientAppointment();
   const navigate = useNavigate();
   const { id: patientId = '' } = useParams();
-
+  const [loading, setLoading] = useState(false);
   const methods = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -49,19 +50,21 @@ const AddPatientAppointment = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
+    setLoading(true);
     await addPatientAppointment({ ...data, patientId: patientId as string });
     navigate(links.patientDetails(patientId));
+    setLoading(false);
   };
 
   return (
     <FormProvider {...methods}>
       <form className="flex flex-col gap-4 items-start" onSubmit={methods.handleSubmit(onSubmit)}>
-        <PageTitle title="Add Patient Appointment" />
+        <PageTitle backButton={true} title="Add Patient Appointment" />
         <FormDateField name="date" label="Date" />
         <FormTimeField name="time" label="Time" />
         <FormSelect name="dentist" label="Dentist" options={doctors} placeholder="Select Dentist" />
         <FormSelect name="treatment" label="Treatment" options={treatments} placeholder="Select Treatment" />
-        <Button className="self-end" type="submit">
+        <Button className="self-end" type="submit" disabled={loading}>
           Add appointment
         </Button>
       </form>

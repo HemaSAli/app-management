@@ -1,5 +1,6 @@
 import links from '@/links';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { z } from 'zod';
@@ -22,23 +23,26 @@ const schema = z.object({
 const AddPatient = () => {
   const addPatient = useAddPatient();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const methods = useForm({
     resolver: zodResolver(schema)
   });
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
+    setLoading(true);
     await addPatient(data);
     navigate(links.patients());
+    setLoading(false);
   };
 
   return (
     <FormProvider {...methods}>
       <form className="flex flex-col gap-4 items-start" onSubmit={methods.handleSubmit(onSubmit)}>
-        <PageTitle title="Add Patient" />
+        <PageTitle backButton={true} title="Add Patient" />
         <PatientPhoto />
         <FormInput name="fullName" label="Full Name" />
         <FormInput name="address" label="Address" />
-        <Button className="self-end" type="submit">
+        <Button className="self-end" type="submit" disabled={loading}>
           Add Patient
         </Button>
       </form>

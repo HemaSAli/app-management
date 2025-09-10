@@ -50,7 +50,7 @@ const PatientDetails = () => {
     <div className="flex flex-col">
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-1">
-          <PageTitle title="Patient Details" />
+          <PageTitle title="Patient Details" backButton={true} />
         </div>
         <Button disabled={!patientDetails}>
           <Link to={links.addPatientAppointment(patientDetails?.id ?? '')}>Add appointment</Link>

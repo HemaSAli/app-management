@@ -22,7 +22,7 @@ const Appointment = ({ appointment }: Props) => {
   return (
     <Card className="relative">
       <Button
-        className="absolute top-2 right-2"
+        className="absolute bottom-2 right-2"
         variant="ghost"
         size="icon"
         onClick={() => {
