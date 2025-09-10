@@ -6,7 +6,6 @@
   "scripts": {
     "dev:client": "vite",
     "dev:server": "cd server && npm run dev",
-    "postinstall": "cd server && npm i",
     "build": "cd server && npm run build && cd .. && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
