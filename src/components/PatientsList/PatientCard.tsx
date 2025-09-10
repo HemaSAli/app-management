@@ -19,7 +19,7 @@ const PatientCard = ({ patient, onDelete }: Props) => {
   };
 
   return (
-    <Card className="w-full flex-row justify-between items-center" key={patient.id}>
+    <Card className="w-full justify-between flex-col lg:flex-row items-start lg:items-center" key={patient.id}>
       <div className="flex items-start gap-2">
         <Avatar className="w-10 h-10">
           <AvatarImage src={patient.photo} />
